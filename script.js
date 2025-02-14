@@ -1,6 +1,8 @@
 let xp = 0;
 let health = 100;
 let gold = 50;
+let strength=0;
+let agility=0;
 let currentWeaponIndex = 0;
 let fighting;
 let monsterHealth;
@@ -201,8 +203,8 @@ function attack() {
       defeatMonster();
     }
   }
-  if (Math.random() <= .1 && inventory.length !== 1) {
-    text.innerText += " Your " + inventory.pop() + " breaks.";
+  if (Math.random() <= .05 && inventory.length !== 1) {
+    text.innerText += "\n" +inventory.pop() + " breaks.";
     currentWeaponIndex--;
   }
 }
@@ -214,8 +216,7 @@ function monsterAttack(){
   }
 }
 function getMonsterAttackValue(level) {
-  const hit = (level * 5) - (Math.floor(Math.random() * xp));
-  console.log(hit);
+  const hit = (level * 2) - (Math.floor(Math.random() * xp*0.9));
   return hit > 0 ? hit : 0;
 }
 
