@@ -4,7 +4,8 @@ let gold = 50;
 let currentWeaponIndex = 0;
 let fighting;
 let monsterHealth;
-let inventory = ["stick"];
+let inventory = ["3sa"];
+
 
 const button1 = document.querySelector('#button1');
 const button2 = document.querySelector("#button2");
