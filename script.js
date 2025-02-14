@@ -17,10 +17,10 @@ const monsterStats = document.querySelector("#monsterStats");
 const monsterName = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth");
 const weapons = [
-  { name: 'stick', power: 5 },
-  { name: 'dagger', power: 30 },
-  { name: 'claw hammer', power: 50 },
-  { name: 'sword', power: 100 }
+  { name: '3sa', power: 5 },
+  { name: 'sekinet lkoujina', power: 30 },
+  { name: 'dhwafer el amira', power: 50 },
+  { name: 'EL GRANDINO', power: 100 }
 ];
 const monsters = [
   {
@@ -68,19 +68,19 @@ const locations = [
     name: "kill monster",
     "button text": ["Go to town square", "Go to town square", "Go to town square"],
     "button functions": [goTown, goTown, goTown],
-    text: 'The monster screams "Arg!" as it dies. You gain experience points and find gold.'
+    text: 'The monster screams "YAMMAA" as it dies. You gain xp and find gold.\n You sense something lingering in the darkness...'
   },
   {
     name: "lose",
-    "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
+    "button text": ["REPLAY?", "REPLAY??", "REPLAY????"],
     "button functions": [restart, restart, restart],
     text: "You die. &#x2620;"
   },
   { 
     name: "win", 
-    "button text": ["REPLAY?", "REPLAY?", "REPLAY?"], 
+    "button text": ["REPLAY?", "REPLAY???", "REPLAY????"], 
     "button functions": [restart, restart, restart], 
-    text: "You defeat the dragon! YOU WIN THE GAME! &#x1F389;" 
+    text: "Sa7a patron tbarkallah rba7t &#x1F389;" 
   }
 ];
 
@@ -119,7 +119,7 @@ function buyHealth() {
     goldText.innerText = gold;
     healthText.innerText = health;
   } else {
-    text.innerText = "You do not have enough gold to buy health.";
+    text.innerText = '"The shopkeeper says:"3andekch dannous sadi9i"';
   }
 }
 
@@ -134,10 +134,10 @@ function buyWeapon() {
       inventory.push(newWeapon);
       text.innerText += " In your inventory you have: " + inventory;
     } else {
-      text.innerText = "You do not have enough gold to buy a weapon.";
+      text.innerText =  'The shopkeeper gives you a smirk as he looks at your '+wepons[currentWeaponIndex]+' and affirms:"yzazikech eli 3andi?"';
     }
   } else {
-    text.innerText = "You already have the most powerful weapon!";
+    text.innerText = '"The shopkeeper looks at you annoyed:"kahaw 3ad heka ch3anna"';
     button2.innerText = "Sell weapon for 15 gold";
     button2.onclick = sellWeapon;
   }
