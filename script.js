@@ -120,7 +120,7 @@ function buyHealth() {
     goldText.innerText = gold;
     healthText.innerText = health;
   } else {
-    text.innerText = '"The shopkeeper says:"3andekch dannous sadi9i"';
+    text.innerText = 'The shopkeeper says:"3andekch dannous sadi9i"';
   }
 }
 
@@ -138,7 +138,7 @@ function buyWeapon() {
       text.innerText =  'The shopkeeper gives you a smirk as he looks at your '+wepons[currentWeaponIndex]+' and affirms:"yzazikech eli 3andi?"';
     }
   } else {
-    text.innerText = '"The shopkeeper looks at you annoyed:"kahaw 3ad heka ch3anna"';
+    text.innerText = 'The shopkeeper looks at you annoyed:"kahaw 3ad heka ch3anna"';
     button2.innerText = "Sell weapon for 15 gold";
     button2.onclick = sellWeapon;
   }
