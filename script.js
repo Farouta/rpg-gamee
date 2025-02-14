@@ -62,7 +62,7 @@ const locations = [
   {
     name: "fight",
     "button text": ["Attack", "Dodge", "Run"],
-    "button functions": [attack, dodge, goTown],
+    "button functions": [attack, dodge, run],
     text: "You are fighting a monster."
   },
   {
@@ -172,6 +172,7 @@ function fightDragon() {
 
 function goFight() {
   update(locations[3]);
+  setMonsterHealthBar(100)
   monsterHealth = monsters[fighting].health;
   monsterStats.style.display = "block";
   monsterName.innerText = monsters[fighting].name;
@@ -181,14 +182,16 @@ function goFight() {
 function attack() {
   text.innerText = "The " + monsters[fighting].name + " attacks.";
   text.innerText += " You attack it with " + weapons[currentWeaponIndex].name + ".";
-  health -= getMonsterAttackValue(monsters[fighting].level);
+  monsterAttack();
+
   if (isMonsterHit()) {
     monsterHealth -= weapons[currentWeaponIndex].power + Math.floor(Math.random() * xp) + 1;    
   } else {
     text.innerText += " You miss.lol";
   }
-  healthText.innerText = health;
+
   monsterHealthText.innerText = monsterHealth;
+  setMonsterHealthBar((monsterHealth*100)/monsters[fighting].health)
   if (health <= 0) {
     lose();
   } else if (monsterHealth <= 0) {
@@ -201,6 +204,13 @@ function attack() {
   if (Math.random() <= .1 && inventory.length !== 1) {
     text.innerText += " Your " + inventory.pop() + " breaks.";
     currentWeaponIndex--;
+  }
+}
+function monsterAttack(){
+  health -= getMonsterAttackValue(monsters[fighting].level);
+  healthText.innerText = health;
+  if (health <= 0) {
+    lose();
   }
 }
 function getMonsterAttackValue(level) {
@@ -242,5 +252,23 @@ function restart() {
   goldText.innerText = gold;
   healthText.innerText = health;
   xpText.innerText = xp;
+  
   goTown();
+}
+function run(){
+  if(Math.random()>0.2){
+    goTown();
+    text.innerText="You managed to escape. Now where to?"
+  }else{
+    text.innerText="The "+monsters[fighting].name+" blocked your escape!"
+    monsterAttack();
+  }
+  
+}
+
+
+
+function setMonsterHealthBar(precent){
+  document.documentElement.style.setProperty("--monsterHealthbar", String(precent)+"%");
+  
 }
