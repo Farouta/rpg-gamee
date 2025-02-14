@@ -130,7 +130,7 @@ function buyWeapon() {
       currentWeaponIndex++;
       goldText.innerText = gold;
       let newWeapon = weapons[currentWeaponIndex].name;
-      text.innerText = "You now have a " + newWeapon + ".";
+      text.innerText = "You now have " + newWeapon + ".";
       inventory.push(newWeapon);
       text.innerText += " In your inventory you have: " + inventory;
     } else {
@@ -148,10 +148,10 @@ function sellWeapon() {
     gold += 15;
     goldText.innerText = gold;
     let currentWeapon = inventory.shift();
-    text.innerText = "You sold a " + currentWeapon + ".";
+    text.innerText = "You sold " + currentWeapon + ".";
     text.innerText += " In your inventory you have: " + inventory;
   } else {
-    text.innerText = "Don't sell your only weapon!";
+    text.innerText = "bech tadhrabhom bidek?";
   }
 }
 
@@ -180,12 +180,12 @@ function goFight() {
 
 function attack() {
   text.innerText = "The " + monsters[fighting].name + " attacks.";
-  text.innerText += " You attack it with your " + weapons[currentWeaponIndex].name + ".";
+  text.innerText += " You attack it with " + weapons[currentWeaponIndex].name + ".";
   health -= getMonsterAttackValue(monsters[fighting].level);
   if (isMonsterHit()) {
     monsterHealth -= weapons[currentWeaponIndex].power + Math.floor(Math.random() * xp) + 1;    
   } else {
-    text.innerText += " You miss.";
+    text.innerText += " You miss.lol";
   }
   healthText.innerText = health;
   monsterHealthText.innerText = monsterHealth;
