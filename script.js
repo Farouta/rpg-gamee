@@ -1,8 +1,8 @@
 let xp = 0;
 let health = 100;
 let gold = 50;
-let strength=0;
-let agility=0;
+let strength=1;
+let agility=1;
 let currentWeaponIndex = 0;
 let fighting;
 let monsterHealth;
@@ -69,20 +69,20 @@ const locations = [
   },
   {
     name: "kill monster",
-    "button text": ["Go to town square", "Go to town square", "Go to town square"],
-    "button functions": [goTown, goTown, goTown],
+    "button text": ["Go to town square"],
+    "button functions": [goTown],
     text: 'The monster screams "YAMMAA" as it dies. You gain xp and find gold.\n You sense something lingering in the darkness...'
   },
   {
     name: "lose",
-    "button text": ["REPLAY?", "REPLAY??", "REPLAY????"],
-    "button functions": [restart, restart, restart],
+    "button text": ["REPLAY?"],
+    "button functions": [restart],
     text: "You die. &#x2620;"
   },
   { 
     name: "win", 
-    "button text": ["REPLAY?", "REPLAY???", "REPLAY????"], 
-    "button functions": [restart, restart, restart], 
+    "button text": ["REPLAY?"], 
+    "button functions": [restart], 
     text: "Sa7a patron tbarkallah rba7t &#x1F389;" 
   }
 ];
@@ -93,6 +93,15 @@ button3.onclick = fightDragon;
 
 function update(location) {
   monsterStats.style.display = "none";
+  if (location["button text"].length===1){
+  button2.style.display="none"
+  button3.style.display="none"
+  button1.innerText = location["button text"][0];
+  button1.onclick = location["button functions"][0];
+  text.innerHTML = location.text;
+}else{
+  button2.style.display="inline"
+  button3.style.display="inline"
   button1.innerText = location["button text"][0];
   button2.innerText = location["button text"][1];
   button3.innerText = location["button text"][2];
@@ -100,6 +109,7 @@ function update(location) {
   button2.onclick = location["button functions"][1];
   button3.onclick = location["button functions"][2];
   text.innerHTML = location.text;
+}
 }
 
 function goTown() {
@@ -189,7 +199,7 @@ function attack() {
   if (isMonsterHit()) {
     monsterHealth -= weapons[currentWeaponIndex].power + Math.floor(Math.random() * xp) + 1;    
   } else {
-    text.innerText += " You miss.lol";
+    text.innerText +=  "\n"+" You miss lol.";
   }
 
   monsterHealthText.innerText = monsterHealth;
@@ -221,11 +231,18 @@ function getMonsterAttackValue(level) {
 }
 
 function isMonsterHit() {
-  return Math.random() > .2 || health < 20;
+  return Math.random() > .1 || health < 10;
 }
 
 function dodge() {
-  text.innerText = "You dodge the attack from the " + monsters[fighting].name;
+  if(Math.random()<0.1*agility){
+    attack();
+    text.innerText = "You dodge the attack from the " + monsters[fighting].name+" and counter-striked.";
+}else{
+  text.innerText="You failed to dodge"
+  monsterAttack();
+
+}
 }
 
 function defeatMonster() {
@@ -242,6 +259,7 @@ function lose() {
 
 function winGame() {
   update(locations[6]);
+
 }
 
 function restart() {
